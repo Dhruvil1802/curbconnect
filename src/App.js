@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./Header";
+import Body from "./Body";
 
 function App() {
+  const allUsers = ["yax", "sarthak", "dhruvil"];
+
+  const [user, SetSelectedUser] = useState("yax");
+
+  const [formOpen, setformOpen] = useState(false);
+  const [requestOpen, setrequestOpen] = useState(false);
+  const [findOpen, setfindOpen] = useState(false);
+
+  const Find = () => {
+    setfindOpen(true);
+    setformOpen(false);
+    setrequestOpen(false);
+  };
+
+  const request = () => {
+    setformOpen(false);
+    setrequestOpen(true);
+    setfindOpen(false);
+  };
+
+  const createPost = () => {
+    setformOpen(true);
+    setrequestOpen(false);
+    setfindOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <Header
+        createPost={createPost}
+        request={request}
+        Find={Find}
+        SetSelectedUser={SetSelectedUser}
+        allUsers={allUsers}
+      />
+      <Body
+        formOpen={formOpen}
+        requestOpen={requestOpen}
+        findOpen={findOpen}
+        user={user}
+      />
     </div>
   );
 }

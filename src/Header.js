@@ -4,6 +4,7 @@ export default function Header({
   createPost,
   request,
   Find,
+  MyPost,
   allUsers,
   user,
   SetSelectedUser,
@@ -26,7 +27,9 @@ export default function Header({
           <li className="Request" onClick={Find}>
             Find
           </li>
-          <li className="MyPost">My post</li>
+          <li className="MyPost" onClick={MyPost}>
+            My post
+          </li>
 
           <li className="Users">
             <SelectUser

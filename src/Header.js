@@ -8,11 +8,19 @@ export default function Header({
   allUsers,
   user,
   SetSelectedUser,
+  mypost,
+  setMyPost,
 }) {
   function handleSetSelectedUser(event) {
     const newUser = event.target.value;
 
     SetSelectedUser(newUser);
+
+    const stored_posts = JSON.parse(localStorage.getItem(`${newUser}_posts`))
+      ? JSON.parse(localStorage.getItem(`${newUser}_posts`))
+      : [];
+
+    setMyPost(stored_posts);
   }
   return (
     <div>

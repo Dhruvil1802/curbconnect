@@ -20,12 +20,12 @@ function Post({ post }) {
         <br />
         <div>
           pick up : <br />
-          <p>{post.pick_up}</p>
+          <p>{post.pickup}</p>
         </div>
         <br />
         <br />
         <div>
-          drop off :<br /> <p>{post.drop_off}</p>
+          drop off :<br /> <p>{post.drop}</p>
         </div>
         <br />
         <br />

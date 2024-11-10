@@ -4,7 +4,16 @@ import Request from "./Request";
 import Find from "./Find";
 import MyPost from "./Mypost";
 
-function Body({ formOpen, requestOpen, findOpen, mypostOpen, user }) {
+function Body({
+  formOpen,
+  requestOpen,
+  findOpen,
+  mypostOpen,
+  user,
+  mypost,
+  setMyPost,
+  funcMyPost,
+}) {
   // state : DisplayContent
   // add my_post of all users except self
   const [displayContent, setDisplayContent] = useState([
@@ -69,32 +78,15 @@ function Body({ formOpen, requestOpen, findOpen, mypostOpen, user }) {
     },
   ]);
 
-  const [mypost, setMyPost] = useState([
-    {
-      date: "9/11/24",
-      pick_up: "sudburry",
-      drop_off: "toronto",
-      user: "yax",
-    },
-    {
-      date: "10/11/24",
-      pick_up: "sudburry",
-      drop_off: "london",
-      user: "yax",
-    },
-    {
-      date: "11/11/24",
-      pick_up: "sudburry",
-      drop_off: "brampton",
-      user: "yax",
-    },
-  ]);
-
-  console.log("requestedto", requestedto);
-  console.log("requestedfrom", requestedfrom);
   return (
     <div className="body-container">
-      <Createpost formOpen={formOpen} />
+      <Createpost
+        formOpen={formOpen}
+        user={user}
+        mypost={mypost}
+        setMyPost={setMyPost}
+        funcMyPost={funcMyPost}
+      />
       <Request
         requestOpen={requestOpen}
         requestedfrom={requestedfrom}

@@ -39,6 +39,13 @@ function App() {
     setfindOpen(false);
     setmypostOpen(true);
   };
+
+  const stored_posts = JSON.parse(localStorage.getItem(`${user}_posts`))
+    ? JSON.parse(localStorage.getItem(`${user}_posts`))
+    : [];
+
+  const [mypost, setMyPost] = useState(stored_posts);
+
   return (
     <div className="app-container">
       <Header
@@ -48,6 +55,8 @@ function App() {
         MyPost={MyPost}
         SetSelectedUser={SetSelectedUser}
         allUsers={allUsers}
+        mypost={mypost}
+        setMyPost={setMyPost}
       />
       <Body
         formOpen={formOpen}
@@ -55,6 +64,9 @@ function App() {
         findOpen={findOpen}
         mypostOpen={mypostOpen}
         user={user}
+        mypost={mypost}
+        setMyPost={setMyPost}
+        funcMyPost={MyPost}
       />
     </div>
   );

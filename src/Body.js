@@ -13,6 +13,10 @@ function Body({
   mypost,
   setMyPost,
   funcMyPost,
+  requestedto,
+  setRequestedTo,
+  requestedfrom,
+  setRequestedFrom,
 }) {
   // state : DisplayContent
   // add my_post of all users except self
@@ -50,33 +54,8 @@ function Body({
   ]);
   // state : requestedto
   //current user requested to
-  const [requestedto, setRequestedTo] = useState([
-    {
-      date: "11/11/24",
-      pick_up: "sudburry",
-      drop_off: "brampton",
-      user: "dhruvil",
-      accepted: false,
-    },
-  ]);
   // state : requestedfrom
   // current user requested from
-  const [requestedfrom, setRequestedFrom] = useState([
-    {
-      date: "8/11/24",
-      pick_up: "sudburry",
-      drop_off: "ottawa",
-      user: "dhruvil",
-      accepted: false,
-    },
-    {
-      date: "10/11/24",
-      pick_up: "sudburry",
-      drop_off: "toronto",
-      user: "sarthak",
-      accepted: false,
-    },
-  ]);
 
   return (
     <div className="body-container">
@@ -100,7 +79,6 @@ function Body({
         setRequestedTo={setRequestedTo}
         requestedto={requestedto}
         setRequestedFrom={setRequestedFrom}
-        requestedfrom={requestedfrom}
         user={user}
       />
       <MyPost mypostOpen={mypostOpen} mypost={mypost} setMyPost={setMyPost} />

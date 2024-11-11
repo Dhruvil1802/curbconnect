@@ -14,6 +14,8 @@ export default function Header({
   requestOpen,
   findOpen,
   mypostOpen,
+  setRequestedTo,
+  setRequestedFrom,
 }) {
   function handleSetSelectedUser(event) {
     const newUser = event.target.value;
@@ -25,6 +27,22 @@ export default function Header({
       : [];
 
     setMyPost(stored_posts);
+
+    const stored_requested_to = JSON.parse(
+      localStorage.getItem(`${newUser}_requested_to`)
+    )
+      ? JSON.parse(localStorage.getItem(`${newUser}_requested_to`))
+      : [];
+
+    setRequestedTo(stored_requested_to);
+
+    const stored_requested_from = JSON.parse(
+      localStorage.getItem(`${newUser}_requested_from`)
+    )
+      ? JSON.parse(localStorage.getItem(`${newUser}_requested_from`))
+      : [];
+
+    setRequestedFrom(stored_requested_from);
   }
   return (
     <div>

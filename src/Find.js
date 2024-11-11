@@ -43,18 +43,42 @@ export default function Find({
 function Post({ post, setRequestedTo, setRequestedFrom, user }) {
   function handleRequest() {
     // store this object into localstorage of current user
-    setRequestedTo((RequestedTo) => [
-      ...RequestedTo,
-      { ...post, accepted: false, user: post.user },
-    ]);
+    // setRequestedTo((RequestedTo) => [
+    //   ...RequestedTo,
+    //   { ...post, accepted: false, user: post.user },
+    // ]);
+
+    const stored = JSON.parse(
+      localStorage.getItem(`${post.user}_requested_from`)
+    )
+      ? JSON.parse(localStorage.getItem(`${post.user}_requested_from`))
+      : [];
+
+    const current_post = {
+      user: user,
+      date: post.date,
+      pick_up: post.pick_up,
+      drop_off: post.drop_off,
+      accepted: false,
+    };
+
+    localStorage.setItem(
+      `${post.user}_requested_from`,
+      JSON.stringify([...stored, current_post])
+    );
+
     //store this object into localstorage
 
-    // get data from post.user's local storage and pass it to setRequestedFrom,
-    //store this object into localstorage of post.user
-    setRequestedFrom((RequestedFrom) => [
-      ...RequestedFrom,
-      { ...post, accepted: false, user: user },
-    ]);
+    const stored_obj = JSON.parse(localStorage.getItem(`${user}_requested_to`))
+      ? JSON.parse(localStorage.getItem(`${user}_requested_to`))
+      : [];
+
+    localStorage.setItem(
+      `${user}_requested_to`,
+      JSON.stringify([...stored_obj, { ...post, accepted: false }])
+    );
+
+    setRequestedTo(JSON.parse(localStorage.getItem(`${user}_requested_to`)));
     //store this object into localstorage
   }
   return (

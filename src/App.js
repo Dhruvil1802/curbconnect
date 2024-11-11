@@ -46,6 +46,22 @@ function App() {
 
   const [mypost, setMyPost] = useState(stored_posts);
 
+  // getting stuff from local storage
+  const stored_requested_to = JSON.parse(
+    localStorage.getItem(`${user}_requested_to`)
+  )
+    ? JSON.parse(localStorage.getItem(`${user}_requested_to`))
+    : [];
+  const [requestedto, setRequestedTo] = useState(stored_requested_to);
+
+  // getting stuff from local storage
+  const stored_requested_from = JSON.parse(
+    localStorage.getItem(`${user}_requested_from`)
+  )
+    ? JSON.parse(localStorage.getItem(`${user}_requested_from`))
+    : [];
+  const [requestedfrom, setRequestedFrom] = useState(stored_requested_from);
+
   return (
     <div className="app-container">
       <Header
@@ -61,6 +77,8 @@ function App() {
         requestOpen={requestOpen}
         findOpen={findOpen}
         mypostOpen={mypostOpen}
+        setRequestedTo={setRequestedTo}
+        setRequestedFrom={setRequestedFrom}
       />
       <Body
         formOpen={formOpen}
@@ -71,6 +89,10 @@ function App() {
         mypost={mypost}
         setMyPost={setMyPost}
         funcMyPost={MyPost}
+        requestedto={requestedto}
+        setRequestedTo={setRequestedTo}
+        requestedfrom={requestedfrom}
+        setRequestedFrom={setRequestedFrom}
       />
     </div>
   );

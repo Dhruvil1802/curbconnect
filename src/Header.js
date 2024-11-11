@@ -10,6 +10,10 @@ export default function Header({
   SetSelectedUser,
   mypost,
   setMyPost,
+  formOpen,
+  requestOpen,
+  findOpen,
+  mypostOpen,
 }) {
   function handleSetSelectedUser(event) {
     const newUser = event.target.value;
@@ -26,17 +30,45 @@ export default function Header({
     <div>
       <header>
         <ul>
-          <li className="Create" onClick={createPost}>
-            Create Post
+          <li>
+            <button
+              className={`Request header_button ${
+                formOpen ? "active_header_button" : ""
+              }`}
+              onClick={createPost}
+            >
+              Create Post
+            </button>
           </li>
-          <li className="Request" onClick={request}>
-            Requests
+          <li>
+            <button
+              className={`Request header_button ${
+                requestOpen ? "active_header_button" : ""
+              }`}
+              onClick={request}
+            >
+              Requests
+            </button>
           </li>
-          <li className="Request" onClick={Find}>
-            Find
+          <li>
+            <button
+              className={`Request header_button ${
+                findOpen ? "active_header_button" : ""
+              }`}
+              onClick={Find}
+            >
+              Find
+            </button>
           </li>
-          <li className="MyPost" onClick={MyPost}>
-            My post
+          <li>
+            <button
+              className={`Request header_button ${
+                mypostOpen ? "active_header_button" : ""
+              }`}
+              onClick={MyPost}
+            >
+              My post
+            </button>
           </li>
 
           <li className="Users">

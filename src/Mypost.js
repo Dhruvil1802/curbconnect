@@ -11,21 +11,23 @@ export default function MyPost({ mypostOpen, mypost }) {
 
 function Post({ post }) {
   return (
-    <div className="form-container">
+    <>
       <div className="post_div">
-        <div>
+        <div className="post_user">
           <p>{post.user}</p>
         </div>
         <br />
         <br />
-        <div>
-          pick up : <br />
-          <p>{post.pickup}</p>
+        <div className="post_img_div">
+          <img className="post_img" src="images/image1.png" alt="image1.png" />
         </div>
         <br />
-        <br />
+
         <div>
-          drop off :<br /> <p>{post.drop}</p>
+          travel: <br />
+          <p>
+            {post.pick_up} to {post.drop_off}
+          </p>
         </div>
         <br />
         <br />
@@ -34,7 +36,10 @@ function Post({ post }) {
         </div>
         <br />
         <br />
+        {/* <div>
+          <button onClick={() => handleRequest()}>Request</button>
+        </div> */}
       </div>
-    </div>
+    </>
   );
 }

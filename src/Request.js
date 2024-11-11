@@ -46,21 +46,24 @@ function Post({ post, setRequestedFrom, setRequestedTo }) {
   }
 
   return (
-    <div className="form-container">
+    <div>
       <div className="post_div">
-        <div>
+        <div className="post_user">
           <p>{post.user}</p>
         </div>
         <br />
-        <br />
-        <div>
-          pick up : <br />
-          <p>{post.pick_up}</p>
+        <div className="post_img_div">
+          <img className="post_img" src="images/image1.png" alt="image1.png" />
         </div>
         <br />
+
+        <br />
         <br />
         <div>
-          drop off :<br /> <p>{post.drop_off}</p>
+          travel: <br />
+          <p>
+            {post.pick_up} to {post.drop_off}
+          </p>
         </div>
         <br />
         <br />
@@ -70,8 +73,21 @@ function Post({ post, setRequestedFrom, setRequestedTo }) {
         <br />
         <br />
         <div>
-          <button onClick={() => handleRequest(true)}>accept</button>
-          <button onClick={() => handleRequest(false)}>decline</button>
+          {post.accepted ? (
+            <button
+              className="accept_button"
+              onClick={() => handleRequest(false)}
+            >
+              Decline
+            </button>
+          ) : (
+            <button
+              className="accept_button"
+              onClick={() => handleRequest(true)}
+            >
+              Accept
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -57,6 +57,10 @@ function App() {
         allUsers={allUsers}
         mypost={mypost}
         setMyPost={setMyPost}
+        formOpen={formOpen}
+        requestOpen={requestOpen}
+        findOpen={findOpen}
+        mypostOpen={mypostOpen}
       />
       <Body
         formOpen={formOpen}

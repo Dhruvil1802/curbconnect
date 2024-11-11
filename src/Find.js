@@ -59,19 +59,21 @@ function Post({ post, setRequestedTo, setRequestedFrom, user }) {
   }
   return (
     <div className="post_div">
-      <div>
+      <div className="post_user">
         <p>{post.user}</p>
       </div>
       <br />
-      <br />
-      <div>
-        pick up : <br />
-        <p>{post.pick_up}</p>
+      <div className="post_img_div">
+        <img className="post_img" src="images/image1.png" alt="image1.png" />
       </div>
       <br />
       <br />
+      <br />
       <div>
-        drop off :<br /> <p>{post.drop_off}</p>
+        travel: <br />
+        <p>
+          {post.pick_up} to {post.drop_off}
+        </p>
       </div>
       <br />
       <br />
@@ -81,7 +83,9 @@ function Post({ post, setRequestedTo, setRequestedFrom, user }) {
       <br />
       <br />
       <div>
-        <button onClick={() => handleRequest()}>Request</button>
+        <button className="request_button" onClick={() => handleRequest()}>
+          Request
+        </button>
       </div>
     </div>
   );
@@ -100,8 +104,8 @@ function Search({
   setRequestedFrom,
 }) {
   return (
-    <div>
-      <div>
+    <>
+      <div className="search_div">
         Pick-up:
         <input
           type="search"
@@ -125,7 +129,7 @@ function Search({
         />
       </div>
 
-      <div className="form-container">
+      <div>
         {displayContent
           .filter(
             (post) =>
@@ -176,6 +180,6 @@ function Search({
         <Post post={post} />
       ))} */}
       </div>
-    </div>
+    </>
   );
 }

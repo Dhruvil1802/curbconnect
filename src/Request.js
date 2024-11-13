@@ -7,6 +7,7 @@ export default function Request({
   setRequestedFrom,
   requestedto,
   setRequestedTo,
+  user,
 }) {
   return (
     <div className="body-container">
@@ -16,33 +17,64 @@ export default function Request({
             post={post}
             setRequestedFrom={setRequestedFrom}
             setRequestedTo={setRequestedTo}
+            user={user}
+            requestedfrom={requestedfrom}
+            requestedto={requestedto}
           />
         ))}
     </div>
   );
 }
 
-function Post({ post, setRequestedFrom, setRequestedTo }) {
+function Post({
+  post,
+  setRequestedFrom,
+  setRequestedTo,
+  user,
+  requestedto,
+  requestedfrom,
+}) {
   function handleRequest(accepted) {
-    // get object from post.user from localstorage and pass it in the setRequestedTo
-    setRequestedTo((RequestedTo) => [
-      // data from post.user's local storage
-      RequestedTo.map((currentPost) =>
-        currentPost === post
-          ? { ...currentPost, accepted: accepted }
-          : currentPost
-      ),
-    ]);
+    const stored_requested_to = JSON.parse(
+      localStorage.getItem(`${post.user}_requested_to`)
+    )
+      ? JSON.parse(localStorage.getItem(`${post.user}_requested_to`))
+      : [];
+    const stored_requested_from = JSON.parse(
+      localStorage.getItem(`${user}_requested_from`)
+    )
+      ? JSON.parse(localStorage.getItem(`${user}_requested_from`))
+      : [];
 
-    //get object of current user from local storage and pass it into setReqestedForm
-    setRequestedFrom((RequestedFrom) =>
-      RequestedFrom.map((currentPost) =>
-        currentPost === post
-          ? { ...currentPost, accepted: accepted }
-          : currentPost
-      )
+    const newRequestedTo = stored_requested_to.map((currentPost) =>
+      currentPost.date === post.date &&
+      currentPost.pick_up === post.pick_up &&
+      currentPost.drop_off === post.drop_off &&
+      currentPost.user === user
+        ? { ...currentPost, accepted: accepted }
+        : currentPost
     );
-    //store this object into localstorage of current user
+
+    const newRequestedFrom = stored_requested_from.map((currentPost) =>
+      currentPost.date === post.date &&
+      currentPost.pick_up === post.pick_up &&
+      currentPost.drop_off === post.drop_off &&
+      currentPost.user === post.user
+        ? { ...currentPost, accepted: accepted }
+        : currentPost
+    );
+
+    localStorage.setItem(
+      `${post.user}_requested_to`,
+      JSON.stringify(newRequestedTo)
+    );
+    localStorage.setItem(
+      `${user}_requested_from`,
+      JSON.stringify(newRequestedFrom)
+    );
+
+    setRequestedTo(newRequestedTo);
+    setRequestedFrom(newRequestedFrom);
   }
 
   return (
@@ -52,11 +84,11 @@ function Post({ post, setRequestedFrom, setRequestedTo }) {
           <p>{post.user}</p>
         </div>
         <br />
+        <br />
         <div className="post_img_div">
           <img className="post_img" src="images/image1.png" alt="image1.png" />
         </div>
         <br />
-
         <br />
         <br />
         <div>

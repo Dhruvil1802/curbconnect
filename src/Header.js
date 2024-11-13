@@ -16,6 +16,7 @@ export default function Header({
   mypostOpen,
   setRequestedTo,
   setRequestedFrom,
+  setDisplayContent,
 }) {
   function handleSetSelectedUser(event) {
     const newUser = event.target.value;
@@ -43,6 +44,17 @@ export default function Header({
       : [];
 
     setRequestedFrom(stored_requested_from);
+
+    const stored_allusers_post = allUsers
+      .filter((auser) => auser !== newUser)
+      .map((auser) =>
+        JSON.parse(localStorage.getItem(`${auser}_posts`))
+          ? JSON.parse(localStorage.getItem(`${auser}_posts`))
+          : []
+      )
+      .flat();
+
+    setDisplayContent(stored_allusers_post);
   }
   return (
     <div>

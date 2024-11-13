@@ -1,8 +1,8 @@
 
-my_post = [{date:"9/11/24",pick_up:"sudburry",drop_off:"toronto"}]
-dhruvil_requested_from = [{date:"9/11/24",pick_up:"sudburry",drop_off:"toronto",user:"yax",accepted:true}]
-dhruvil_requested_to = [{date:"8/11/24",pick_up:"sudburry",drop_off:"ottawa",user:"yax",accepted:true}]
+my_post = [{date:"9/11/24",pick_up:"sudburry",drop_off:"toronto", image:"url"}]
+dhruvil_requested_from = [{date:"9/11/24",pick_up:"sudburry",drop_off:"toronto",user:"yax",accepted:true, image:"url"}]
+dhruvil_requested_to = [{date:"8/11/24",pick_up:"sudburry",drop_off:"ottawa",user:"yax",accepted:true, image:"url"}]
 
-yax_my_post = [{date:"8/11/24",pick_up:"sudburry",drop_off:"ottawa"}]
-yax_requested_from = [{date:"8/11/24",pick_up:"sudburry",drop_off:"ottawa",user:"dhruvil",accepted:true}]
-yax_requested_to = [{date:"9/11/24",pick_up:"sudburry",drop_off:"toronto",user:"dhruvil",accepted:true}]
+yax_my_post = [{date:"8/11/24",pick_up:"sudburry",drop_off:"ottawa", image:"url"}]
+yax_requested_from = [{date:"8/11/24",pick_up:"sudburry",drop_off:"ottawa",user:"dhruvil",accepted:true, image:"url"}]
+yax_requested_to = [{date:"9/11/24",pick_up:"sudburry",drop_off:"toronto",user:"dhruvil",accepted:true, image:"url"}]

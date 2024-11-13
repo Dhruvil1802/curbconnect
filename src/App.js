@@ -9,7 +9,7 @@ function App() {
 
   const [formOpen, setformOpen] = useState(false);
   const [requestOpen, setrequestOpen] = useState(false);
-  const [findOpen, setfindOpen] = useState(false);
+  const [findOpen, setfindOpen] = useState(true);
   const [mypostOpen, setmypostOpen] = useState(false);
 
   const Find = () => {
@@ -46,6 +46,17 @@ function App() {
 
   const [mypost, setMyPost] = useState(stored_posts);
 
+  // getting posts of all users and add them in allusers_post
+  const stored_allusers_post = allUsers
+    .filter((auser) => auser !== user)
+    .map((auser) =>
+      JSON.parse(localStorage.getItem(`${auser}_posts`))
+        ? JSON.parse(localStorage.getItem(`${auser}_posts`))
+        : []
+    )
+    .flat();
+  const [displayContent, setDisplayContent] = useState(stored_allusers_post);
+
   // getting stuff from local storage
   const stored_requested_to = JSON.parse(
     localStorage.getItem(`${user}_requested_to`)
@@ -70,6 +81,7 @@ function App() {
         Find={Find}
         MyPost={MyPost}
         SetSelectedUser={SetSelectedUser}
+        user={user}
         allUsers={allUsers}
         mypost={mypost}
         setMyPost={setMyPost}
@@ -79,6 +91,7 @@ function App() {
         mypostOpen={mypostOpen}
         setRequestedTo={setRequestedTo}
         setRequestedFrom={setRequestedFrom}
+        setDisplayContent={setDisplayContent}
       />
       <Body
         formOpen={formOpen}
@@ -93,6 +106,8 @@ function App() {
         setRequestedTo={setRequestedTo}
         requestedfrom={requestedfrom}
         setRequestedFrom={setRequestedFrom}
+        displayContent={displayContent}
+        setDisplayContent={setDisplayContent}
       />
     </div>
   );

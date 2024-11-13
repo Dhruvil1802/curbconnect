@@ -5,6 +5,7 @@ function Createpost({ formOpen, user, mypost, setMyPost, funcMyPost }) {
   const [pick_up, setPickup] = useState("");
   const [drop_off, setDrop] = useState("");
   const [date, setDate] = useState("");
+  const [image, setImage] = useState("");
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -13,6 +14,7 @@ function Createpost({ formOpen, user, mypost, setMyPost, funcMyPost }) {
       pick_up: pick_up,
       drop_off: drop_off,
       user: user,
+      image: image,
     };
 
     localStorage.setItem(
@@ -63,6 +65,15 @@ function Createpost({ formOpen, user, mypost, setMyPost, funcMyPost }) {
                 type="date"
                 onChange={(e) => setDate(e.target.value)}
                 value={date}
+              />
+            </div>
+            <br />
+            <br />
+            <div className="App">
+              <h2>Add Image:</h2>
+              <input
+                type="file"
+                onChange={(e) => setImage(e.target.files[0].name)}
               />
             </div>
             <br />

@@ -126,7 +126,7 @@ form button:hover {
   width: 100%;
   height: 30px;
   align-content: center;
-  color: #5c70ac;
+  color: #0040ff;
   font-size: x-large;
   font-weight: 600;
 
@@ -135,7 +135,7 @@ form button:hover {
 .request_button {
   height: 40px;
   width: 100%;
-  background-color: #6295e0ad;
+  background-color: #0066ffad;
   border: none;
   border-radius: 10px;
   color: white;
@@ -144,7 +144,7 @@ form button:hover {
 .accept_button {
   height: 40px;
   width: 100%;
-  background-color: #6295e0ad;
+  background-color: #0066ffad;
   border: none;
   border-radius: 10px;
   color: white;

@@ -19,10 +19,15 @@ function Post({ post }) {
         <br />
         <br />
         <div className="post_img_div">
-          <img className="post_img" src="images/image1.png" alt="image1.png" />
+          <img
+            className="post_img"
+            src={`images/${post.image}`}
+            alt={post.image}
+          />
         </div>
         <br />
-
+        <br />
+        <br />
         <div>
           travel: <br />
           <p>
@@ -36,6 +41,7 @@ function Post({ post }) {
         </div>
         <br />
         <br />
+
         {/* <div>
           <button onClick={() => handleRequest()}>Request</button>
         </div> */}

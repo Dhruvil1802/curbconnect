@@ -77,6 +77,7 @@ export default function Post({
       date: post.date,
       pick_up: post.pick_up,
       drop_off: post.drop_off,
+      image: post.image,
       accepted: false,
     };
     //store the data in the local storage

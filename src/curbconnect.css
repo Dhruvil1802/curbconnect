@@ -32,9 +32,10 @@ body {
   text-align: center;
   color: #5c70ac;
   font-weight: 600;
-  margin-top: 100%;
-  width: 76.5%;
+  margin-top: 10%;
+  width: 20%;
   border-radius: 30px;
+  position: fixed;
 }
 
 form {

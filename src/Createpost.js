@@ -70,7 +70,7 @@ function Createpost({ formOpen, user, mypost, setMyPost, funcMyPost }) {
             <br />
             <br />
             <div className="App">
-              <h2>Add Image:</h2>
+              <label>Add Image:</label>
               <input
                 type="file"
                 onChange={(e) => setImage(e.target.files[0].name)}

@@ -7,6 +7,7 @@ export default function Post({
   user,
 }) {
   function handleRequestApproval(accepted) {
+    // get the data from the local storage of both the user
     const stored_requested_to = JSON.parse(
       localStorage.getItem(`${post.user}_requested_to`)
     )
@@ -19,38 +20,49 @@ export default function Post({
       ? JSON.parse(localStorage.getItem(`${user}_requested_from`))
       : [];
 
-    const newRequestedTo = stored_requested_to.map((currentPost) =>
-      currentPost.date === post.date &&
-      currentPost.pick_up === post.pick_up &&
-      currentPost.drop_off === post.drop_off &&
-      currentPost.user === user
-        ? { ...currentPost, accepted: accepted }
-        : currentPost
-    );
-
-    const newRequestedFrom = stored_requested_from.map((currentPost) =>
-      currentPost.date === post.date &&
-      currentPost.pick_up === post.pick_up &&
-      currentPost.drop_off === post.drop_off &&
-      currentPost.user === post.user
-        ? { ...currentPost, accepted: accepted }
-        : currentPost
-    );
-
+    // set the data in the local storage
     localStorage.setItem(
       `${post.user}_requested_to`,
-      JSON.stringify(newRequestedTo)
+      JSON.stringify(
+        stored_requested_to.map((currentPost) =>
+          currentPost.date === post.date &&
+          currentPost.pick_up === post.pick_up &&
+          currentPost.drop_off === post.drop_off &&
+          currentPost.user === user
+            ? { ...currentPost, accepted: accepted }
+            : currentPost
+        )
+      )
     );
     localStorage.setItem(
       `${user}_requested_from`,
-      JSON.stringify(newRequestedFrom)
+      JSON.stringify(
+        stored_requested_from.map((currentPost) =>
+          currentPost.date === post.date &&
+          currentPost.pick_up === post.pick_up &&
+          currentPost.drop_off === post.drop_off &&
+          currentPost.user === post.user
+            ? { ...currentPost, accepted: accepted }
+            : currentPost
+        )
+      )
     );
 
-    setRequestedTo(newRequestedTo);
-    setRequestedFrom(newRequestedFrom);
+    // set the same data in the state
+    setRequestedTo(
+      JSON.parse(localStorage.getItem(`${post.user}_requested_to`))
+        ? JSON.parse(localStorage.getItem(`${post.user}_requested_to`))
+        : []
+    );
+    setRequestedFrom(
+      JSON.parse(localStorage.getItem(`${user}_requested_from`))
+        ? JSON.parse(localStorage.getItem(`${user}_requested_from`))
+        : []
+    );
   }
 
   function handleRequest() {
+    // get the data from the local storage of both the use
     const stored = JSON.parse(
       localStorage.getItem(`${post.user}_requested_from`)
     )
@@ -67,7 +79,7 @@ export default function Post({
       drop_off: post.drop_off,
       accepted: false,
     };
-
+    //store the data in the local storage
     localStorage.setItem(
       `${post.user}_requested_from`,
       JSON.stringify([...stored, current_post])
@@ -78,6 +90,7 @@ export default function Post({
       JSON.stringify([...stored_obj, { ...post, accepted: false }])
     );
 
+    //set the data in the state
     setRequestedTo(
       JSON.parse(localStorage.getItem(`${user}_requested_to`))
         ? JSON.parse(localStorage.getItem(`${user}_requested_to`))
@@ -86,44 +99,47 @@ export default function Post({
   }
 
   function handleCancelRequest() {
+    // get the data from the local storage of both the use
     const stored = JSON.parse(
       localStorage.getItem(`${post.user}_requested_from`)
     )
       ? JSON.parse(localStorage.getItem(`${post.user}_requested_from`))
       : [];
+
     const stored_obj = JSON.parse(localStorage.getItem(`${user}_requested_to`))
       ? JSON.parse(localStorage.getItem(`${user}_requested_to`))
       : [];
 
-    const new_request_from = stored.filter(
-      (stored_post) =>
-        !(
-          stored_post.user === user &&
-          stored_post.date === post.date &&
-          stored_post.pick_up === post.pick_up &&
-          stored_post.drop_off === post.drop_off
-        )
-    );
-
-    const new_request_to = stored_obj.filter(
-      (stored_post) =>
-        !(
-          stored_post.user === post.user &&
-          stored_post.date === post.date &&
-          stored_post.pick_up === post.pick_up &&
-          stored_post.drop_off === post.drop_off
-        )
-    );
-
     localStorage.setItem(
       `${user}_requested_to`,
-      JSON.stringify(new_request_to)
+      JSON.stringify(
+        stored_obj.filter(
+          (stored_post) =>
+            !(
+              stored_post.user === post.user &&
+              stored_post.date === post.date &&
+              stored_post.pick_up === post.pick_up &&
+              stored_post.drop_off === post.drop_off
+            )
+        )
+      )
     );
     localStorage.setItem(
       `${post.user}_requested_from`,
-      JSON.stringify(new_request_from)
+      JSON.stringify(
+        stored.filter(
+          (stored_post) =>
+            !(
+              stored_post.user === user &&
+              stored_post.date === post.date &&
+              stored_post.pick_up === post.pick_up &&
+              stored_post.drop_off === post.drop_off
+            )
+        )
+      )
     );
 
+    // set data in the state from local storage
     setRequestedTo(
       JSON.parse(localStorage.getItem(`${user}_requested_to`))
         ? JSON.parse(localStorage.getItem(`${user}_requested_to`))

@@ -18,6 +18,7 @@ export default function Header({
   setRequestedFrom,
   setDisplayContent,
 }) {
+  //when user will be updated, this function gets the data of new user from the local storage and update it in the state
   function handleSetSelectedUser(event) {
     const newUser = event.target.value;
 

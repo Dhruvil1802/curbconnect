@@ -41,7 +41,7 @@ function Search({
   // state : date_search
   const [date_search, setDateSearch] = useState("");
   return (
-    <>
+    <div>
       <div className="search_div">
         Pick-up:
         <input
@@ -59,13 +59,14 @@ function Search({
         />
         Date:
         <input
-          type="search"
+          type="date"
           placeholder="Search..."
           value={date_search}
           onChange={(e) => setDateSearch(e.target.value)}
         />
       </div>
 
+      {/* filtering posts based on search */}
       <div>
         {displayContent
           .filter(
@@ -96,6 +97,6 @@ function Search({
             />
           ))}
       </div>
-    </>
+    </div>
   );
 }

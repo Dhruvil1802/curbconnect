@@ -5,22 +5,23 @@ export default function Request({
   requestOpen,
   requestedfrom,
   setRequestedFrom,
-
   setRequestedTo,
   user,
 }) {
   return (
-    <div className="body-container">
-      {requestOpen &&
-        requestedfrom.map((post) => (
-          <Post
-            post={post}
-            requestOpen={requestOpen}
-            setRequestedFrom={setRequestedFrom}
-            setRequestedTo={setRequestedTo}
-            user={user}
-          />
-        ))}
-    </div>
+    <>
+      <div className="body-container">
+        {requestOpen &&
+          requestedfrom.map((post) => (
+            <Post
+              post={post}
+              requestOpen={requestOpen}
+              setRequestedFrom={setRequestedFrom}
+              setRequestedTo={setRequestedTo}
+              user={user}
+            />
+          ))}
+      </div>
+    </>
   );
 }
